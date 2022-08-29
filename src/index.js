@@ -8,12 +8,12 @@ const Schema = require('./models/schema');
 const staticPath = path.join(__dirname,"./templates");
 
 app.set('view engine','hbs');
-app.set("index",staticPath);
+app.set("views",staticPath);
 app.use(express.static(staticPath));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-app.get("/index",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render("index");
 });
 
@@ -28,7 +28,7 @@ app.get("/index",(req,res)=>{
      })
 
      const done=await register.save();
-     res.status(201).render("index");
+     res.redirect("/");
 
 
     }catch(error){
